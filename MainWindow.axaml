@@ -1,0 +1,48 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:nodes="clr-namespace:TreeView.ContextMenu.Avalonia.Example.Nodes"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="TreeView.ContextMenu.Avalonia.Example.MainWindow"
+        Title="TreeView.ContextMenu.Avalonia.Example">
+    <StackPanel Orientation="Vertical">
+        <TreeView Items="{Binding Items}" SelectedItems="{Binding SelectedItems}">
+            <TreeView.DataTemplates>
+                <TreeDataTemplate DataType="nodes:SolutionNode" ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding Header}">
+                        <TextBlock.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Solution"
+                                          Command="{Binding $parent[TreeView].DataContext.TraceCommand}"
+                                          CommandParameter="{Binding .}" />
+                            </ContextMenu>
+                        </TextBlock.ContextMenu>
+                    </TextBlock>
+                </TreeDataTemplate>
+                <TreeDataTemplate DataType="nodes:ProjectNode" ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding Header}">
+                        <TextBlock.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Project"
+                                          Command="{Binding $parent[TreeView].DataContext.TraceCommand}"
+                                          CommandParameter="{Binding .}" />
+                            </ContextMenu>
+                        </TextBlock.ContextMenu>
+                    </TextBlock>
+                </TreeDataTemplate>
+                <TreeDataTemplate DataType="nodes:DocumentNode" ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding Header}">
+                        <TextBlock.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Document"
+                                          Command="{Binding $parent[TreeView].DataContext.TraceCommand}"
+                                          CommandParameter="{Binding .}" />
+                            </ContextMenu>
+                        </TextBlock.ContextMenu>
+                    </TextBlock>
+                </TreeDataTemplate>
+            </TreeView.DataTemplates>
+        </TreeView>
+    </StackPanel>
+</Window>
